@@ -1,5 +1,5 @@
 {
-  "name": "job-board",
+  "name": "help-for-hire",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -15,14 +15,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MaestroLuu/Job-Board.git"
+    "url": "https://github.com/MaestroLuu/Help-for-Hire.git"
   },
   "author": "David Luu",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MaestroLuu/Job-Board/issues"
+    "url": "https://github.com/MaestroLuu/Help-for-Hire"
   },
-  "homepage": "https://github.com/MaestroLuu/Job-Board#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.1.2",
@@ -31,7 +30,6 @@
     "express-handlebars": "^6.0.2",
     "express-session": "^1.17.2",
     "mysql2": "^2.3.3",
-    "node-cron": "^3.0.0",
     "sequelize": "^6.16.0"
   },
   "devDependencies": {
