@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require("sequelize");
-const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
 
 class Job extends Model {}
@@ -31,24 +30,36 @@ Job.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-          isInt: true
+        isInt: true,
       },
     },
-    contact: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true,
-            
-        }
-    }   
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "user",
+        key: "id",
+      },
+    },
+    contact_email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        isEmail: true,
+      },
+      references: {
+        model: "user",
+        key: "email",
+      },
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "Job",
+    modelName: "job",
   }
 );
 
