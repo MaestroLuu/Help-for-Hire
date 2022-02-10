@@ -1,6 +1,7 @@
 const { User } = require("../../models");
 const router = require("express").Router();
 
+// Would this be with users? or vice versa? Remember
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {

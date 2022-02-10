@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-
+// Does this really work?
 router.post("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
