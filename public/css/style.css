@@ -10,7 +10,7 @@
   cursor: pointer;
 }
 
-.btn-logout {
+.btn-logout, .btn-login, .btn-signup, .btn-about-us {
   padding: 10px 28px;
   background-color: #e7e7e7;
   color: black;
