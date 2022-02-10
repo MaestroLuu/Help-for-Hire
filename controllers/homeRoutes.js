@@ -1,6 +1,6 @@
 const router = require("express").Router();
 //missing Jobs model
-const { User, Jobs } = require("../models");
+const { User, Job } = require("../models");
 const withAuth = require("../utils/withAuth");
 
 //directs to about page
@@ -29,10 +29,11 @@ router.get("/home", withAuth, async (req,res) => {
 //directs to jobs page; missing cookie information
 router.get("/jobs", withAuth, async (req, res) =>{
     // find all jobs in db
-    const jobPosts = await Jobs.findAll().catch((err) => {
+    const jobPosts = await Job.findAll({
+        attributes: {exclude: req.session.userId},
+    }).catch((err) => {
         res.status(500).json(err);
     });
-    
     //serialize jobs so that appropriate values can be displayed
     const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
     
@@ -47,7 +48,7 @@ router.get("/jobs", withAuth, async (req, res) =>{
 // directs to job description page
 router.get("/jobs/:id", withAuth, async (req, res) =>{
     try {
-        const jobPost = await Jobs.findByPk(req.params.id);
+        const jobPost = await Job.findByPk(req.params.id);
         if(!jobPost) {
             res.status(404).json({ message: 'No job post exists with this id!'});
             return;
@@ -67,7 +68,7 @@ router.get("/jobs/:id", withAuth, async (req, res) =>{
 
 //missing cooking information
 router.get("/hiring", withAuth, async (req, res) =>{
-    const jobPosts = await Jobs.findAll({where: {id: req.body.id}}).catch((err) => {
+    const jobPosts = await Job.findAll({where: {id: req.body.id}}).catch((err) => {
         res.status(500).json(err);
     });
     
