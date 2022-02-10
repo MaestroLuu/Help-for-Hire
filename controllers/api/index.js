@@ -7,6 +7,5 @@ const hiringRouter = require("./hiring-router")
 router.use("/users", usersRouter);
 router.use("/login", loginRouter);
 router.use("/jobs", jobsRouter);
-router.use("/hiring", hiringRouter);
 
 module.exports = router;
