@@ -1,22 +1,19 @@
 const router = require("express").Router();
+//missing Jobs model
 const { User, Jobs } = require("../models");
-
-// use withAuth middleware to redirect from protected routes.
 const withAuth = require("../utils/withAuth");
 
-// example of a protected route
-// router.get("/users-only", withAuth, (req, res) => {
-//   // ...
-// });
-
+//directs to about page
 router.get("/", (req, res) => {
     res.render("about");
 });
 
+//directs to login page
 router.get("/login", (req, res) => {
   res.render("login", { title: "Log-In Page" });
 });
 
+//directs to registration page
 router.get("/users", (req, res) => {
   res.render("users", { title: "Registration Page" });
 });
@@ -29,12 +26,19 @@ router.get("/home", withAuth, async (req,res) => {
     });
 }); 
 
-//directs to jobs page
+//directs to jobs page; missing cookie information
 router.get("/jobs", withAuth, async (req, res) =>{
-    // create a jobs.handlebars
-    // create partial cards
+    // find all jobs in db
+    const jobPosts = await Jobs.findAll().catch((err) => {
+        res.status(500).json(err);
+    });
+    
+    //serialize jobs so that appropriate values can be displayed
+    const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
+    
+    // create a jobs.handlebars and partial cards for each job post
     res.render('jobs', {
-      Jobs,
+      jobs,
       title: "Job Posts",
       logged_in: req.session.logged_in,
     });
@@ -42,19 +46,38 @@ router.get("/jobs", withAuth, async (req, res) =>{
 
 // directs to job description page
 router.get("/jobs/:id", withAuth, async (req, res) =>{
-    // create a description.handlebars
-    res.render('description', {
-      Jobs,
-      title: "Job Description",
-      logged_in: req.session.logged_in,
-    });
+    try {
+        const jobPost = await Jobs.findByPk(req.params.id);
+        if(!jobPost) {
+            res.status(404).json({ message: 'No job post exists with this id!'});
+            return;
+        }        
+        //serializes that specific job post 
+        const jobDescription = jobPost.get({ plain: true});
+        // create a description.handlebars
+        res.render('description', {
+          jobDescription,
+          title: "Job Description",
+          logged_in: req.session.logged_in,
+        });
+    } catch (err) {
+        res.status(500).json(err)
+    }
 });
 
-router.get("/hirer", withAuth, async (req, res) =>{
+//missing cooking information
+router.get("/hiring", withAuth, async (req, res) =>{
+    const jobPosts = await Jobs.findAll({where: {id: req.body.id}}).catch((err) => {
+        res.status(500).json(err);
+    });
+    
+    //serialize jobs so that appropriate values can be displayed
+    const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
+
     // create hiring handlebars
-    res.render ('hiring', {
-        Jobs, 
-        //{where id = user.id}?
+    res.render ('hire', {
+        jobs, 
+        where: {id: req.body.id},
         title: "Job Posts",
         logged_in: req.session.logged_in
     });
