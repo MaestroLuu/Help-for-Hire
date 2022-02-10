@@ -29,7 +29,9 @@ router.get("/home", withAuth, async (req,res) => {
 //directs to jobs page; missing cookie information
 router.get("/jobs", withAuth, async (req, res) =>{
     // find all jobs in db
-    const jobPosts = await Jobs.findAll().catch((err) => {
+    const jobPosts = await Jobs.findAll({
+        attributes: {exclude: req.session.userId}
+    }).catch((err) => {
         res.status(500).json(err);
     });
     
