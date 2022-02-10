@@ -26,19 +26,18 @@
             </div>
         </nav>
     </header>
-    <div class="container-fluid text-center">
-        <h1 class="pt-5">Home</h1>
-        <h2>Welcome, {{user.username}}!</h2>
-        <p class="border-top border-dark fs-3 align-center">Please select an option</p>
-        <div class="align-center">
-            <div class="m-5">
-                <button class='btn btn-seeking text-primary bg-light'>Seeking</button>
-            </div>
-            <div class="m-5">
-                <button class='btn btn-hiring text-success bg-light'>Hiring</button>
-            </div>
-        </div>
-    </div>
+    <h1 class="pt-5 text-center">Signup</h1>
+    <form class='signup-form text-center'>
+      <label for='username'>Username</label><br />
+      <input type='text' name='username' id='username' /><br />
+      <label for='password'>Password</label><br />
+      <input type='password' name='password' id='password' /><br />
+      <label for='confirm-password'>Confirm Password</label><br />
+      <input type='password' name='confirm-password' id='confirm-password' /><br />
+      <button class='btn m-5' type='submit'>Submit</button>
+    </form>
+    <p class="text-center">Already have an account? <a href='/login'>Login Here</a></p>
+    <script src='/js/signup.js'></script>
     <script src='./public/js/main.js'></script>
 </body>
 
