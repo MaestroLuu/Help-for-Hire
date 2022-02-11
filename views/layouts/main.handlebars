@@ -14,15 +14,15 @@
   <header>
     <nav class="d-flex col-12 justify-content-between p-2 bg-secondary">
       <div>
-        <button class='btn btn-about-us'>About Us</button>
+        <a href="/"><button class='btn btn-about-us'>About Us</button></a>
       </div>
       <div>
-        {{#if isLoggedIn}}
-        <button class='btn btn-logout'>Log Out</button>
-        {{else}}
-        <button class='btn btn-login'>Log In</button>
-        <button class='btn btn-signup'>Sign Up</button>
-        {{/if}}
+        {{!-- {{#if isLoggedIn}} --}}
+        <a href="/logout"><button class='btn btn-logout'>Log Out</button></a>
+        {{!-- {{else}} --}}
+        <a href="/login"><button class='btn btn-login'>Log In</button></a>
+        <a href="/signup"><button class='btn btn-signup'>Sign Up</button></a>
+        {{!-- {{/if}} --}}
       </div>
     </nav>
   </header>
