@@ -32,7 +32,7 @@ router.get("/jobseeking", async (req, res) =>{
   });
   //serialize jobs so that appropriate values can be displayed
   const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
-  
+  console.log(jobs);
   // create a jobs.handlebars and partial cards for each job post
   res.render('job-seeking', {
     jobs,
