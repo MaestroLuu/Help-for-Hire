@@ -1,9 +1,13 @@
-document.querySelector(".btn-logout").addEventListener("click", async () => {
-  try {
-    await fetch("/api/users/logout", { method: "POST" });
-    document.location.replace("/login");
-  } catch (error) {
-    console.error(error);
-    console.error("Failed to logout.");
+const logout = async () => {
+  const response = await fetch('/api/users-router/logout', {
+    method: 'GET',
+  });
+
+  if (response.ok) {
+    document.location.replace('/home');
+  } else(err) => {
+    console.err(err);
   }
-});
+};
+
+document.querySelector('#home').addEventListener('click', logout);
