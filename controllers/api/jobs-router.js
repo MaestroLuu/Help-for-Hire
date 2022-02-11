@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const { Job } = require("../../models");
-const withAuth = require("../../utils/withAuth");
+// const withAuth = require("../../utils/withAuth");
 
-router.post("/", withAuth, async (req, res) => {
+// ADD WITHAUTH LATER ON
+router.post("/", async (req, res) => {
   try {
     const newJob = await Job.create({
       job_name: req.body.job_name,
@@ -24,7 +25,8 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-router.delete("/:id", withAuth, async (req, res) => {
+// ADD WITHAUTH LATER ON
+router.delete("/:id", async (req, res) => {
   try {
     const jobData = await Job.destroy({
       where: {

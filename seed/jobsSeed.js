@@ -4,7 +4,7 @@ const { Job } = require('../models');
 const jobData = [
   {
     id: 1,
-    name: "Move Boxes",
+    job_name: "Move Boxes",
     description: "Move this box 1 inch for me",
     price: 99,
     zipcode: 11111,
@@ -13,7 +13,7 @@ const jobData = [
   },
   {
     id: 2,
-    name: "Walk my child",
+    job_name: "Walk my child",
     description: "Child needs walking for 30 mins",
     price: 199,
     zipcode: 22222,
@@ -22,7 +22,7 @@ const jobData = [
   },
   {
     id: 3,
-    name: "Drive my car",
+    job_name: "Drive my car",
     description: "Need to drive my car once a week",
     price: 50,
     zipcode: 33333,
@@ -31,7 +31,7 @@ const jobData = [
   },
   {
     id: 4,
-    name: "Mow my lawn",
+    job_name: "Mow my lawn",
     description: "Too lazy to mow my lawn, mow it for me",
     price: 20,
     zipcode: 44444,
@@ -40,7 +40,7 @@ const jobData = [
   },
   {
     id: 5,
-    name: "Water my lawn",
+    job_name: "Water my lawn",
     description: "Grass is brown, please water it",
     price: 15,
     zipcode: 55555,
@@ -49,7 +49,7 @@ const jobData = [
   },
   {
     id: 6,
-    name: "Fix my bike",
+    job_name: "Fix my bike",
     description: "Bike doesn't work, fix it please",
     price: 200,
     zipcode: 66666,
