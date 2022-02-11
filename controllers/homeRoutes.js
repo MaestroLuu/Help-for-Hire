@@ -1,24 +1,23 @@
 const router = require("express").Router();
-//missing Jobs model
 const { User, Job } = require("../models");
 const withAuth = require("../utils/withAuth");
 
-//directs to about page
+//directs to about page (works)
 router.get("/", (req, res) => {
     res.render("about");
 });
 
-//directs to login page
+//directs to login page (works)
 router.get("/login", (req, res) => {
   res.render("login", { title: "Log-In Page" });
 });
 
-//directs to registration page
-router.get("/users", (req, res) => {
-  res.render("users", { title: "Registration Page" });
+//directs to registration page (works)
+router.get("/signup", (req, res) => {
+  res.render("signup", { title: "Registration Page" });
 });
 
-//directs to homepage
+//directs to homepage (works)
 router.get("/home", withAuth, async (req,res) => {
     res.render('home', {
         title: "Home Page",

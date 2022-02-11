@@ -48,10 +48,6 @@ Job.init(
         notEmpty: true,
         isEmail: true,
       },
-      references: {
-        model: "user",
-        key: "email",
-      },
     },
   },
   {
