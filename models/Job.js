@@ -11,7 +11,7 @@ Job.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    job_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
