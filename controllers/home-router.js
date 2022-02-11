@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { User } = require("../models");
-const withAuth = require("../utils/withAuth");
+const { User, Job } = require("../models");
+// const withAuth = require("../utils/withAuth");
 
 router.get("/", (req, res) => {
   res.render("about");
@@ -14,18 +14,19 @@ router.get("/signup", (req, res) => {
   res.render("signup", { title: "Registration Page" });
 });
 
-router.get("/home", withAuth, async (req,res) => {
+// ADD WITHAUTH LATER ON
+router.get("/home", async (req,res) => {
   res.render('home', {
       title: "Home Page",
       logged_in: req.session.logged_in,
   });
 }); 
 
-/////
-router.get("/jobs", withAuth, async (req, res) =>{
+// ADD WITHAUTH LATER ON
+router.get("/jobs", async (req, res) =>{
   // find all jobs in db
   const jobPosts = await Job.findAll({
-      attributes: {exclude: req.session.userId},
+      // attributes: {exclude: req.session.userId},
   }).catch((err) => {
       res.status(500).json(err);
   });
@@ -33,15 +34,16 @@ router.get("/jobs", withAuth, async (req, res) =>{
   const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
   
   // create a jobs.handlebars and partial cards for each job post
-  res.render('jobs', {
+  res.render('job-seeking', {
     jobs,
-    title: "Job Posts",
+    title: "Job Seeking",
     logged_in: req.session.logged_in,
   });
 });
 
 // directs to job description page
-router.get("/jobs/:id", withAuth, async (req, res) =>{
+// ADD WITHAUTH LATER ON
+router.get("/jobs/:id", async (req, res) =>{
   try {
       const jobPost = await Job.findByPk(req.params.id);
       if(!jobPost) {
@@ -51,7 +53,7 @@ router.get("/jobs/:id", withAuth, async (req, res) =>{
       //serializes that specific job post 
       const jobDescription = jobPost.get({ plain: true});
       // create a description.handlebars
-      res.render('description', {
+      res.render('job-details', {
         jobDescription,
         title: "Job Description",
         logged_in: req.session.logged_in,
@@ -62,7 +64,8 @@ router.get("/jobs/:id", withAuth, async (req, res) =>{
 });
 
 //missing cooking information
-router.get("/hiring", withAuth, async (req, res) =>{
+// ADD WITHAUTH LATER ON
+router.get("/hiring", async (req, res) =>{
   const jobPosts = await Job.findAll({where: {id: req.body.id}}).catch((err) => {
       res.status(500).json(err);
   });
@@ -71,7 +74,7 @@ router.get("/hiring", withAuth, async (req, res) =>{
   const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
 
   // create hiring handlebars
-  res.render ('hire', {
+  res.render ('job-posts', {
       jobs, 
       where: {id: req.body.id},
       title: "Job Posts",
