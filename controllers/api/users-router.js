@@ -41,8 +41,8 @@ router.post("/logout", (req, res) => {
       res.status(500).json({ message: "Internal server error" });
       return;
     }
-    res.end();
   });
+  res.redirect("/");
 });
 
 module.exports = router;

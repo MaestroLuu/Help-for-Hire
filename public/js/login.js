@@ -10,7 +10,7 @@ const handleLoginSubmit = async (event) => {
       return;
     }
 
-    const response = await fetch("/api/users/login", {
+    const response = await fetch("/api/users-router/login", {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: {

@@ -82,6 +82,9 @@ router.get("/hiringposts", async (req, res) =>{
   });
 });
 
+router.get("/logout", async (req, res) =>{
+  res.render ('login');
+})
 
 router.get("/hiringposts/:id", (req, res) => {
   res.render("hiring-detail");
