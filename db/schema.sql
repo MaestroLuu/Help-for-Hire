@@ -1,3 +1,2 @@
-DROP DATABASE IF EXISTS job_board_db;
-
-CREATE DATABASE job_board_db;
+drop database if exists job_board_db;
+create database job_board_db;
