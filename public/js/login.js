@@ -24,7 +24,7 @@ const handleLoginSubmit = async (event) => {
     }
 
     // go to home page
-    window.location.replace("/");
+    window.location.replace("/home");
   } catch (error) {
     console.log(error);
   }

@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const { User, Job } = require("../models");
+const { Job } = require("../models");
 const { Op } = require("sequelize");
-// const withAuth = require("../utils/withAuth");
+const withAuth = require("../utils/withAuth");
 
 router.get("/", (req, res) => {
   res.render("about");
@@ -15,16 +15,14 @@ router.get("/signup", (req, res) => {
   res.render("signup", { title: "Registration Page" });
 });
 
-// ADD WITHAUTH LATER ON
-router.get("/home", async (req,res) => {
+router.get("/home", withAuth, async (req,res) => {
   res.render('home', {
       title: "Home Page",
-      // logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in,
   });
 }); 
 
-// ADD WITHAUTH LATER ON add try catch
-router.get("/jobseeking", async (req, res) =>{
+router.get("/jobseeking", withAuth, async (req, res) =>{
   // find all jobs in db
   try {
     const jobPosts = await Job.findAll({
@@ -38,7 +36,7 @@ router.get("/jobseeking", async (req, res) =>{
     res.render('job-seeking', {
       jobs,
       title: "Job Seeking",
-      // logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in,
     });  
   } catch (error) {
     res.status(500).json(error);
@@ -46,9 +44,7 @@ router.get("/jobseeking", async (req, res) =>{
   //serialize jobs so that appropriate values can be displayed
 });
 
-// directs to job description page
-// ADD WITHAUTH LATER ON
-router.get("/jobseeking/:id", async (req, res) =>{
+router.get("/jobseeking/:id", withAuth, async (req, res) =>{
   try {
       const jobPost = await Job.findByPk(req.params.id);
       if(!jobPost) {
@@ -62,7 +58,7 @@ router.get("/jobseeking/:id", async (req, res) =>{
       res.render('job-details', {
         jobDescription,
         title: "Job Description",
-        // logged_in: req.session.logged_in,
+        logged_in: req.session.logged_in,
       });
   } catch (err) {
       res.status(500).json(err)
@@ -70,8 +66,7 @@ router.get("/jobseeking/:id", async (req, res) =>{
 });
 
 //missing cooking information
-// ADD WITHAUTH LATER ON
-router.get("/hiringposts", async (req, res) =>{
+router.get("/hiringposts", withAuth, async (req, res) =>{
   try {
     const jobPosts = await Job.findAll({
       where: {
@@ -84,7 +79,7 @@ router.get("/hiringposts", async (req, res) =>{
     res.render('hiring-posts', {
       jobs,
       title: "Job Hiring",
-      // logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in,
     });  
   } catch (error) {
     res.status(500).json(error);
@@ -92,10 +87,10 @@ router.get("/hiringposts", async (req, res) =>{
 });
 
 router.get("/logout", async (req, res) =>{
-  res.render ('login');
+  res.render ('about');
 })
 
-router.get("/hiringposts/:id", async (req, res) => {
+router.get("/hiringposts/:id", withAuth, async (req, res) => {
   try {
     const jobPost = await Job.findByPk(req.params.id);
     if(!jobPost) {
@@ -109,7 +104,7 @@ router.get("/hiringposts/:id", async (req, res) => {
     res.render('hiring-detail', {
       jobDescription,
       title: "Hiring Post Page",
-      // logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in,
     });
 } catch (err) {
     res.status(500).json(err)
