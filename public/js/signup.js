@@ -2,14 +2,14 @@
 const handleSignupSubmit = async (event) => {
   event.preventDefault();
   try {
-    const username = document.querySelector("#username").value.trim();
+    const email = document.querySelector("#email").value.trim();
     const password = document.querySelector("#password").value.trim();
     const confirmPassword = document
       .querySelector("#confirm-password")
       .value.trim();
 
-    if (!username || !password) {
-      alert("You must provide a username and password.");
+    if (!email || !password) {
+      alert("You must provide a email and password.");
       return;
     }
 
@@ -18,9 +18,9 @@ const handleSignupSubmit = async (event) => {
       return;
     }
 
-    const response = await fetch("/api/users-routers", {
+    const response = await fetch("/api/users", {
       method: "POST",
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ email, password }),
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
       },
