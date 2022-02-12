@@ -1,8 +1,9 @@
 // Deletes selected entry in job table
 const hiringPostDelete = async (event) => {
     event.preventDefault();
+    const id = location.href.split('hiringposts/')[1];
     try {
-      const response = await fetch("/api/hiringposts/1", {
+      const response = await fetch(`/api/hiringposts/${id}`, {
         method: "DELETE",
       });
   
