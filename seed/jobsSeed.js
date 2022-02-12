@@ -17,7 +17,7 @@ const jobData = [
     description: "Child needs walking for 30 mins",
     price: 199,
     zipcode: 22222,
-    user_id: 2,
+    user_id: 1,
     contact_email: "job2@email.com",
   },
   {

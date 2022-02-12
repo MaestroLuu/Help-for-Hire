@@ -2,7 +2,7 @@
 const hiringPostDelete = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("/api/jobs/1", {
+      const response = await fetch("/api/hiringposts/1", {
         method: "DELETE",
       });
   
