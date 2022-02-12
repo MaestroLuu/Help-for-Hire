@@ -10,7 +10,7 @@
     "lintfix": "eslint --fix .",
     "format": "prettier --write .",
     "watch": "nodemon server.js",
-    "seed": "node seeds"
+    "seed": "node seed"
   },
   "keywords": [],
   "author": "David Luu",

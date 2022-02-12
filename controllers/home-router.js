@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User, Job } = require("../models");
+const { Op } = require("sequelize");
 // const withAuth = require("../utils/withAuth");
 
 router.get("/", (req, res) => {
@@ -22,23 +23,26 @@ router.get("/home", async (req,res) => {
   });
 }); 
 
-// ADD WITHAUTH LATER ON
+// ADD WITHAUTH LATER ON add try catch
 router.get("/jobseeking", async (req, res) =>{
   // find all jobs in db
-  const jobPosts = await Job.findAll({
-      // attributes: {exclude: req.session.userId},
-  }).catch((err) => {
-      res.status(500).json(err);
-  });
+  try {
+    const jobPosts = await Job.findAll({
+      where: {
+      // change hardcode value to session id
+        user_id: {[Op.ne]: 1}
+      }  
+    });  
+    const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
+    res.render('job-seeking', {
+      jobs,
+      title: "Job Seeking",
+      // logged_in: req.session.logged_in,
+    });  
+  } catch (error) {
+    res.status(500).json(error);
+  }
   //serialize jobs so that appropriate values can be displayed
-  const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
-  console.log(jobs);
-  // create a jobs.handlebars and partial cards for each job post
-  res.render('job-seeking', {
-    jobs,
-    title: "Job Seeking",
-    // logged_in: req.session.logged_in,
-  });
 });
 
 // directs to job description page
@@ -66,20 +70,22 @@ router.get("/jobseeking/:id", async (req, res) =>{
 //missing cooking information
 // ADD WITHAUTH LATER ON
 router.get("/hiringposts", async (req, res) =>{
-  const jobPosts = await Job.findAll({}).catch((err) => {
-      res.status(500).json(err);
-  });
-  
-  //serialize jobs so that appropriate values can be displayed
-  const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
-
-  // create hiring handlebars
-  res.render ('hiring-posts', {
-      jobs, 
-      // where: {id: req.body.id},
-      title: "Hiring Posts",
-      // logged_in: req.session.logged_in
-  });
+  try {
+    const jobPosts = await Job.findAll({
+      where: {
+      // change hardcode value to session id
+        user_id: {[Op.eq]: 1}
+      }  
+    });  
+    const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
+    res.render('hiring-posts', {
+      jobs,
+      title: "Job Hiring",
+      // logged_in: req.session.logged_in,
+    });  
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 router.get("/logout", async (req, res) =>{
