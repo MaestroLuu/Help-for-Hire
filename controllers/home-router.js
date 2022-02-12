@@ -34,6 +34,7 @@ router.get("/jobseeking", async (req, res) =>{
       }  
     });  
     const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
+    console.log(jobs);
     res.render('job-seeking', {
       jobs,
       title: "Job Seeking",
@@ -56,6 +57,7 @@ router.get("/jobseeking/:id", async (req, res) =>{
       }        
       //serializes that specific job post 
       const jobDescription = jobPost.get({ plain: true});
+      console.log(jobDescription);
       // create a description.handlebars
       res.render('job-details', {
         jobDescription,
@@ -78,6 +80,7 @@ router.get("/hiringposts", async (req, res) =>{
       }  
     });  
     const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
+    console.log(jobs);
     res.render('hiring-posts', {
       jobs,
       title: "Job Hiring",
@@ -92,8 +95,25 @@ router.get("/logout", async (req, res) =>{
   res.render ('login');
 })
 
-router.get("/hiringposts/:id", (req, res) => {
-  res.render("hiring-detail");
+router.get("/hiringposts/:id", async (req, res) => {
+  try {
+    const jobPost = await Job.findByPk(req.params.id);
+    if(!jobPost) {
+        res.status(404).json({ message: 'No job post exists with this id!'});
+        return;
+    }        
+    //serializes that specific job post 
+    const jobDescription = jobPost.get({ plain: true});
+    console.log(jobDescription);
+    // create a description.handlebars
+    res.render('hiring-detail', {
+      jobDescription,
+      title: "Hiring Post Page",
+      // logged_in: req.session.logged_in,
+    });
+} catch (err) {
+    res.status(500).json(err)
+}
 });
 
 module.exports = router;
