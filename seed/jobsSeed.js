@@ -17,7 +17,7 @@ const jobData = [
     description: "Child needs walking for 30 mins",
     price: 199,
     zipcode: 22222,
-    user_id: 2,
+    user_id: 1,
     contact_email: "job2@email.com",
   },
   {
@@ -26,7 +26,7 @@ const jobData = [
     description: "Need to drive my car once a week",
     price: 50,
     zipcode: 33333,
-    user_id: 3,
+    user_id: 1,
     contact_email: "job4@email.com",
   },
   {
@@ -35,7 +35,7 @@ const jobData = [
     description: "Too lazy to mow my lawn, mow it for me",
     price: 20,
     zipcode: 44444,
-    user_id: 4,
+    user_id: 1,
     contact_email: "job4@email.com",
   },
   {
