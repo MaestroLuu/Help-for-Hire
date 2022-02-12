@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
     });
     
     req.session.save(() => {
-      req.session.isLoggedIn = true;
+      req.session.logged_in = true;
       req.session.userId = user.id;
       res.json({ id: user.id });
     });
@@ -35,10 +35,11 @@ router.post("/login", async (req, res) => {
     }
     
     req.session.save(() => {
-      req.session.isLoggedIn = true;
+      req.session.logged_in = true;
       req.session.userId = user.id;
       res.json({ id: user.id });
     });
+
   } catch (error) {
     console.error(error);
     res.status(400).json({ message: "Invalid email or password." });
@@ -46,14 +47,12 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/logout", (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ message: "Internal server error" });
-      return;
-    }
-  });
-  res.redirect("/");
+  if (req.session.logged_in) {
+    // Remove the session variables
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  }
 });
 
 module.exports = router;

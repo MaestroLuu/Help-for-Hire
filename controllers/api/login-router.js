@@ -17,13 +17,11 @@ router.post("/login", async (req, res) => {
     if (!isValidPassword) {
       throw new Error("Invalid password");
     }
-    req.session.isLoggedIn = true;
-    req.session.userId = user.id;
-    req.session.save(() =>
-      res.json({
-        id: user.id,
-      })
-    );
+    req.session.save(() => {
+      req.session.logged_in = true;
+      req.session.userId = user.id;
+      res.json({id: user.id})
+    });
   } catch (error) {
     console.error(error);
     res.status(400).json({

@@ -18,17 +18,19 @@
         <a href="/home"><button class='btn btn-home' id="home">Home</button></a>
       </div>
       <div>
-        {{!-- {{#if isLoggedIn}} --}}
-        {{!-- <a href="/logout"><button class='btn btn-logout'>Log Out</button></a> --}}
-        {{!-- {{else}} --}}
+        {{#if logged_in}}
+        <a href ="/logout"><button class='btn btn-logout' id="logout">Log Out</button></a>
+        {{else}}
         <a href="/login"><button class='btn btn-login'>Log In</button></a>
         <a href="/signup"><button class='btn btn-signup'>Sign Up</button></a>
-        {{!-- {{/if}} --}}
+        {{/if}}
       </div>
     </nav>
   </header>
   {{{body}}}
-  <script src='/js/main.js'></script>
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
 </body>
 
 </html>
