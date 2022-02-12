@@ -1,4 +1,4 @@
-// Deletes selected entry in job table
+// Deletes selected job in table
 const hiringPostDelete = async (event) => {
     event.preventDefault();
     try {
