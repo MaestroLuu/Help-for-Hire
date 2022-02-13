@@ -23,7 +23,8 @@
     "express-handlebars": "^5.3.2",
     "express-session": "^1.17.2",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.6.5"
+    "sequelize": "^6.6.5",
+    "swup": "^2.0.14"
   },
   "devDependencies": {
     "eslint": "^8.8.0",
