@@ -15,3 +15,20 @@
   background-color: #e7e7e7;
   color: black;
 }
+
+.transition-fade {
+  opacity: 1;
+  transition: 1000ms;
+  transform: translateX(0);
+  transform-origin: left;
+}
+
+html.is-animating .transition-fade {
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+html.is-leaving .transition-fade {
+  opacity: 0;
+  transform: translateX(0);
+}
