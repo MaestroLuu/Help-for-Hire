@@ -1,8 +1,8 @@
-<h2 class="text-center border-light border-bottom col-6 m-auto my-3">{{jobDescription.job_name}}</h2>
-<div class="border border-dark rounded fs-5 m-auto my-3 d-flex justify-content-center col-10">
+<h2 class="text-center border-light border-bottom col-6 m-auto my-3 transition-swipe">{{jobDescription.job_name}}</h2>
+<div class="rounded fs-5 m-auto my-3 d-flex justify-content-center col-10 transition-swipe">
 {{jobDescription.description}}
 </div>
-<div class="text-center border-bottom border-dark">
+<div class="text-center transition-swipe">
         <p>${{jobDescription.price}}</p><br>
   <button class='btn text-center mb-5' id="contact">{{jobDescription.contact_email}}</button>
 </div>
