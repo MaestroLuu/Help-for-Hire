@@ -34,8 +34,8 @@ router.post("/login", async (req, res) => {
       throw new Error("Invalid password");
     }
     
+    req.session.logged_in = true;
     req.session.save(() => {
-      req.session.logged_in = true;
       req.session.userId = user.id;
       res.json({ id: user.id });
     });

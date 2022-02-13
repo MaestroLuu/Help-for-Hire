@@ -4,7 +4,10 @@ const { Op } = require("sequelize");
 const withAuth = require("../utils/withAuth");
 
 router.get("/", (req, res) => {
-  res.render("about");
+  res.render("about", {
+    title: "About us",
+    logged_in: req.session.logged_in,
+})
 });
 
 router.get("/login", (req, res) => {
@@ -65,17 +68,17 @@ router.get("/jobseeking/:id", withAuth, async (req, res) =>{
   }
 });
 
-//missing cooking information
+// missing cooking information
 router.get("/hiringposts", withAuth, async (req, res) =>{
   try {
+    console.log(req.session.userId);
     const jobPosts = await Job.findAll({
       where: {
       // change hardcode value to session id
-        user_id: {[Op.eq]: 1}
+        user_id: req.session.userId
       }  
     });  
     const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
-    console.log(jobs);
     res.render('hiring-posts', {
       jobs,
       title: "Job Hiring",
