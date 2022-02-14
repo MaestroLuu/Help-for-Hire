@@ -10,7 +10,9 @@ Click on "Try it yourself" to get the link to the repository!
 
 ## Demo
 
-
+![signupgif](./assets/image/Signup.gif)<br>
+![logingif](./assets/image/Login.gif)<br>
+![homegif](./assets/image/Home.gif)<br>
 
 ## Installation
 
