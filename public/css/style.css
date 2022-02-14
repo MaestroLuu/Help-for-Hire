@@ -1,5 +1,5 @@
 .btn {
-  background-color: #008cba;
+  background-color: #b3b483;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -21,6 +21,12 @@
 .btn-logout, .btn-login, .btn-signup, .btn-about-us, .btn-home, .btn-postjob, .btn-delete, .btn-makejob, .btn-signup {
   padding: 5px 28px;
   background-color: #e7e7e7;
+  color: black;
+}
+
+.btn-logout:hover, .btn-login:hover, .btn-signup:hover, .btn-about-us:hover, .btn-home:hover, .btn-postjob:hover, .btn-delete:hover, .btn-makejob:hover, .btn-signup:hover {
+  padding: 5px 28px;
+  background-color: #adabab;
   color: black;
 }
 
