@@ -10,6 +10,14 @@
   cursor: pointer;
 }
 
+#seekcard {
+  box-shadow: 0px 0px 8px blue;
+}
+
+#hirecard {
+  box-shadow: 0px 0px 8px blue;
+}
+
 .btn-logout, .btn-login, .btn-signup, .btn-about-us, .btn-home, .btn-postjob, .btn-delete, .btn-makejob, .btn-signup {
   padding: 5px 28px;
   background-color: #e7e7e7;
