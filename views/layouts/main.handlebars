@@ -21,6 +21,7 @@
       <div>
         {{#if logged_in}}
         <a href ="/logout"><button class='btn btn-logout' id="logout">Log Out</button></a>
+        <a href="/postjob"><button class='btn btn-postjob'>Post Job</button></a>
         {{else}}
         <a href="/login"><button class='btn btn-login'>Log In</button></a>
         <a href="/signup"><button class='btn btn-signup'>Sign Up</button></a>
@@ -34,6 +35,7 @@
   {{#if logged_in}}
   <script defer src="/swup/dist/swup.min.js"></script>
   <script defer src="/js/pageAnimation.js"></script>
+  <script defer src="/js/makejob.js"></script>
   <script src="/js/logout.js"></script>
   {{/if}}
 </body>

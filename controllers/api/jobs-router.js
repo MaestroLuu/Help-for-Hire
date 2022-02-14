@@ -10,8 +10,9 @@ router.post("/", async (req, res) => {
       description: req.body.description,
       price: req.body.price,
       zipcode: req.body.zipcode,
+      contact_email: req.body.contact_email
     });
-    if (!req.body.job_name || !req.body.description || !req.body.price) {
+    if (!req.body.job_name || !req.body.description || !req.body.price || !req.body.zipcode || req.body.contact_email) {
       res
         .status(404)
         .json({
