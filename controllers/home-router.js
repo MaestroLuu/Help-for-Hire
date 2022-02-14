@@ -36,10 +36,10 @@ router.get("/jobseeking", withAuth, async (req, res) =>{
   // find all jobs in db
   try {
     const jobPosts = await Job.findAll({
-      where: {
+      // where: {
       // change hardcode value to session id
-        user_id: {[Op.ne]: 1}
-      }  
+        // user_id: {[Op.ne]: 1}
+      // }  
     });  
     const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
     console.log(jobs);
@@ -80,10 +80,10 @@ router.get("/hiringposts", withAuth, async (req, res) =>{
   try {
     console.log(req.session.userId);
     const jobPosts = await Job.findAll({
-      where: {
+      // where: {
       // change hardcode value to session id
-        user_id: req.session.userId
-      }  
+        // user_id: req.session.userId
+      // }  
     });  
     const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
     res.render('hiring-posts', {
