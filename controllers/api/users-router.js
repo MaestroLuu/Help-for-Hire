@@ -1,6 +1,14 @@
 const { User } = require("../../models");
 const router = require("express").Router();
 
+router.get('/', (req, res) => {
+  // find all categories
+  // be sure to include its associated Products
+  User.findAll({})
+    .then(userData =>
+      res.json(userData))
+});
+
 // create new user
 router.post("/", async (req, res) => {
   // const { email, password } = req.body;

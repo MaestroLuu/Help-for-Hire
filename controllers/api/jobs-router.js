@@ -2,24 +2,26 @@ const router = require("express").Router();
 const { Job } = require("../../models");
 // const withAuth = require("../../utils/withAuth");
 
+router.get("/", (req, res) => {
+  Job.findAll({}).then((jobData) => res.json(jobData));
+});
+
+router.get("/:id", (req, res) => {
+  Job.findByPk(req.params.id).then((jobPkData) => res.json(jobPkData));
+});
+
 // ADD WITHAUTH LATER ON
 router.post("/", async (req, res) => {
   try {
-    const newJob = await Job.create({
-      job_name: req.body.job_name,
-      description: req.body.description,
-      price: req.body.price,
-      zipcode: req.body.zipcode,
-      contact_email: req.body.contact_email
-    });
-    if (!req.body.job_name || !req.body.description || !req.body.price || !req.body.zipcode || req.body.contact_email) {
-      res
-        .status(404)
-        .json({
-          message: "Please make sure you complete the following boxes.",
-        });
-      return;
-    }
+    const newJob = await Job.create(req.body);
+    // if (!req.body.job_name || !req.body.description || !req.body.price || !req.body.zipcode || req.body.contact_email) {
+    //   res
+    //     .status(404)
+    //     .json({
+    //       message: "Please make sure you complete the following boxes.",
+    //     });
+    //   return;
+    // }
     res.status(200).json(newJob);
   } catch (err) {
     res.status(500).json(err);
