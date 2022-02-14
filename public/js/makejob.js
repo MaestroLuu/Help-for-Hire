@@ -1,14 +1,21 @@
 const postJob = async (event) => {
     event.preventDefault();
     try {
-      const description = document.querySelector("#description").value.trim();
       const job_name = document.querySelector("#job_name").value.trim();
+      const description = document.querySelector("#description").value.trim();
       const price = document.querySelector("#price").value.trim();
       const zipcode = document.querySelector("#zipcode").value.trim();
-  
+      const contact_email = document.querySelector("#contact_email").value.trim();
+
       const response = await fetch("/api/hiringposts", {
         method: "POST",
-        body: JSON.stringify({ description, job_name, price, zipcode }),
+        body: JSON.stringify({ 
+          job_name,
+          description, 
+          price, 
+          zipcode,
+          contact_email
+        }),
         headers: {
           "Content-Type": "application/json; charset=UTF-8",
         },
