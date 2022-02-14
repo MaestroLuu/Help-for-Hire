@@ -23,6 +23,13 @@ router.get("/home", withAuth, async (req,res) => {
       title: "Home Page",
       logged_in: req.session.logged_in,
   });
+});
+
+router.get("/postjob", withAuth, async (req,res) => {
+  res.render('postjob', {
+      title: "Post Job",
+      logged_in: req.session.logged_in,
+  });
 }); 
 
 router.get("/jobseeking", withAuth, async (req, res) =>{
