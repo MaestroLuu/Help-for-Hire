@@ -14,14 +14,14 @@ router.get("/:id", (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const newJob = await Job.create(req.body);
-    // if (!req.body.job_name || !req.body.description || !req.body.price || !req.body.zipcode || req.body.contact_email) {
-    //   res
-    //     .status(404)
-    //     .json({
-    //       message: "Please make sure you complete the following boxes.",
-    //     });
-    //   return;
-    // }
+    if (!req.body.job_name || !req.body.description || !req.body.price || !req.body.zipcode || !req.body.contact_email) {
+      res
+        .status(404)
+        .json({
+          message: "Please make sure you complete the following boxes.",
+        });
+      return;
+    }
     res.status(200).json(newJob);
   } catch (err) {
     res.status(500).json(err);
