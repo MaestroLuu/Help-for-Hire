@@ -13,19 +13,15 @@
 <body>
   <header>
     <nav class="d-flex col-12 justify-content-between p-2 bg-secondary">
-      <div>
-        <a href="/"><button class='btn btn-about-us'>About Us</button></a>
+      <div class="col-12 text-center">
+        <a href="/"><button class='btn btn-about-us col-10 col-lg-2 m-1 my-lg-1'>About Us</button></a>
         {{#if logged_in}}
-        <a href="/home"><button class='btn btn-home' id="home">Home</button></a>
-        <a href="/postjob"><button class='btn btn-postjob'>Post Job</button></a>
-        {{/if}}
-      </div>
-      <div>
-        {{#if logged_in}}
-        <a href ="/logout"><button class='btn btn-logout' id="logout">Log Out</button></a>
+        <a href="/home"><button class='btn btn-home col-10 col-lg-2 m-1' id="home">Home</button></a>
+        <a href="/postjob"><button class='btn btn-postjob col-10 col-lg-2 m-1'>Post Job</button></a>
+        <a href ="/logout"><button class='btn btn-logout col-10 col-lg-2 align-right m-1' id="logout">Log Out</button></a>
         {{else}}
-        <a href="/login"><button class='btn btn-login'>Log In</button></a>
-        <a href="/signup"><button class='btn btn-signup'>Sign Up</button></a>
+        <a href="/login"><button class='btn btn-login col-10 col-lg-2 align-right m-1'>Log In</button></a>
+        <a href="/signup"><button class='btn btn-signup col-10 col-lg-2 align-right m-1'>Sign Up</button></a>
         {{/if}}
       </div>
     </nav>
