@@ -17,12 +17,12 @@
         <a href="/"><button class='btn btn-about-us'>About Us</button></a>
         {{#if logged_in}}
         <a href="/home"><button class='btn btn-home' id="home">Home</button></a>
+        <a href="/postjob"><button class='btn btn-postjob'>Post Job</button></a>
         {{/if}}
       </div>
       <div>
         {{#if logged_in}}
         <a href ="/logout"><button class='btn btn-logout' id="logout">Log Out</button></a>
-        <a href="/postjob"><button class='btn btn-postjob'>Post Job</button></a>
         {{else}}
         <a href="/login"><button class='btn btn-login'>Log In</button></a>
         <a href="/signup"><button class='btn btn-signup'>Sign Up</button></a>
