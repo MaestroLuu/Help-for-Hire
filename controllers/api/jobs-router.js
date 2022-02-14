@@ -13,8 +13,15 @@ router.get("/:id", (req, res) => {
 // ADD WITHAUTH LATER ON
 router.post("/", async (req, res) => {
   try {
-    const newJob = await Job.create(req.body);
-    if (!req.body.job_name || !req.body.description || !req.body.price || !req.body.zipcode || !req.body.contact_email) {
+    const { job_name, description, price, zipcode, contact_email} = req.body;
+    const newJob = await Job.create({
+      job_name,
+      description, 
+      price, 
+      zipcode,
+      contact_email
+    });
+    if (!job_name || !description || !price || !zipcode || !contact_email) {
       res
         .status(404)
         .json({
