@@ -19,6 +19,7 @@ router.post("/", async (req, res) => {
       description, 
       price, 
       zipcode,
+      user_id: req.session.userId,
       contact_email
     });
     if (!job_name || !description || !price || !zipcode || !contact_email) {
@@ -31,6 +32,7 @@ router.post("/", async (req, res) => {
     }
     res.status(200).json(newJob);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });

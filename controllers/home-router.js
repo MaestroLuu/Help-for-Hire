@@ -38,7 +38,7 @@ router.get("/jobseeking", withAuth, async (req, res) =>{
     const jobPosts = await Job.findAll({
       where: {
       // change hardcode value to session id
-        user_id: {[Op.ne]: 1}
+        user_id: {[Op.ne]: req.session.userId}
       }  
     });  
     const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
@@ -82,7 +82,7 @@ router.get("/hiringposts", withAuth, async (req, res) =>{
     const jobPosts = await Job.findAll({
       where: {
       // change hardcode value to session id
-        user_id: {[Op.eq]: 1}
+        user_id: {[Op.eq]: req.session.userId}
       }  
     });  
     const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
