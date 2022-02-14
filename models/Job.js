@@ -31,6 +31,7 @@ Job.init(
       allowNull: false,
       validate: {
         isInt: true,
+        len: [5, 5]
       },
     },
     user_id: {
