@@ -1,15 +1,15 @@
 <h1 class="text-center mt-5">Post a new job!</h1>
-<form class='job-post text-center m-3'>
+<form class='job-post text-center m-3 container-fluid col-4 col-lg-2 m-auto'>
     <label for='job_name'>Job Name</label><br>
-    <input type='text' name='job_name' id='job_name'><br>
+    <input type='text' name='job_name' class="my-3 col-12" id='job_name'><br>
     <label for='description'>Job Description</label><br>
-    <input type='text' name='description' id='description'><br>
+     <textarea class="form-control" id="description" rows="5"></textarea><br>
     <label for='price'>price</label><br>
-    <input type='text' name='price' id='price'><br>
+    <input type='text' name='price' class="my-3 col-12" id='price'><br>
     <label for='zipcode'>zipcode</label><br>
-    <input type='text' name='zipcode' id='zipcode'><br>
-        <label for='contact_email'>Email</label><br>
-    <input type='text' name='contact_email' id='contact_email'><br>
+    <input type='text' name='zipcode' class="my-3 col-12" id='zipcode'><br>
+    <label for='contact_email'>Email</label><br>
+    <input type='text' name='contact_email' class="my-3 col-12" id='contact_email'><br>
     <button class='btn m-3' type='submit'>Post job</button>
 </form>
 <script src='/js/makejob.js'></script>
