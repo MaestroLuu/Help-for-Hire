@@ -1,5 +1,10 @@
+const dayjs = require('dayjs');
+const relativeTime = require('dayjs/plugin/relativeTime');
+dayjs.extend(relativeTime);
+
 module.exports = {
-  // add helper functions for handlebars here
-  // Example:
-  // json: object => JSON.stringify(object, null, 4),
+  timeFromNow: (time) => {
+    console.log(time);
+    return dayjs(time).fromNow()
+  },
 };

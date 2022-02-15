@@ -19,7 +19,7 @@ const handleLoginSubmit = async (event) => {
     });
 
     if (!response.ok) {
-      alert("Failed to sign up.");
+      alert("User cannot be found.");
       return;
     }
 

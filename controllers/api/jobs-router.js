@@ -1,8 +1,12 @@
 const router = require("express").Router();
 const { Job } = require("../../models");
 const dayjs = require('dayjs');
+const relativeTime = require('dayjs/plugin/relativeTime');
+dayjs.extend(relativeTime);
+
 // const withAuth = require("../../utils/withAuth");
 const now = dayjs();
+
 router.get("/", (req, res) => {
   Job.findAll({}).then((jobData) => res.json(jobData));
 });
@@ -24,6 +28,7 @@ router.post("/", async (req, res) => {
       contact_email,
       time: now.format()
     });
+    console.log(newJob);
     // console.log(newJob.time)
     if (!job_name || !description || !price || !zipcode || !contact_email) {
       res

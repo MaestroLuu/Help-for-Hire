@@ -6,14 +6,7 @@ const postJob = async (event) => {
       const price = document.querySelector("#price").value.trim();
       const zipcode = document.querySelector("#zipcode").value.trim();
       const contact_email = document.querySelector("#contact_email").value.trim();
-
-      console.log({ 
-        job_name,
-        description, 
-        price, 
-        zipcode,
-        contact_email,
-      })
+      
       const response = await fetch("/api/hiringposts", {
         method: "POST",
         body: JSON.stringify({ 
@@ -27,8 +20,6 @@ const postJob = async (event) => {
           "Content-Type": "application/json; charset=UTF-8",
         },
       });
-  
-      console.log(price)
       if (isNaN(price)) {
         alert("price only accepts numbers, no symbols such as $")
       }
