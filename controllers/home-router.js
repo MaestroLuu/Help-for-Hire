@@ -42,7 +42,8 @@ router.get("/jobseeking", withAuth, async (req, res) =>{
     const jobPosts = await Job.findAll({
       where: {
         user_id: {[Op.ne]: req.session.userId}
-      }  
+      },
+      order: [["time", "DESC"]],
     });  
     const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
     res.render('job-seeking', {
@@ -80,7 +81,8 @@ router.get("/hiringposts", withAuth, async (req, res) =>{
     const jobPosts = await Job.findAll({
       where: {
         user_id: {[Op.eq]: req.session.userId}
-      }  
+      },
+      order: [["time", "DESC"]], 
     });  
     const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
     res.render('hiring-posts', {

@@ -7,13 +7,15 @@ dayjs.extend(relativeTime);
 // const withAuth = require("../../utils/withAuth");
 const now = dayjs();
 
-router.get("/", (req, res) => {
-  Job.findAll({}).then((jobData) => res.json(jobData));
-});
+//COMMENTED OUT WAS USED FOR INSOMNIA TESTING
 
-router.get("/:id", (req, res) => {
-  Job.findByPk(req.params.id).then((jobPkData) => res.json(jobPkData));
-});
+// router.get("/", (req, res) => {
+//   Job.findAll({}).then((jobData) => res.json(jobData));
+// });
+
+// router.get("/:id", (req, res) => {
+//   Job.findByPk(req.params.id).then((jobPkData) => res.json(jobPkData));
+// });
 
 // ADD WITHAUTH LATER ON
 router.post("/", async (req, res) => {

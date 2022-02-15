@@ -1,13 +1,16 @@
 const { User } = require("../../models");
 const router = require("express").Router();
 
-router.get('/', (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
-  User.findAll({})
-    .then(userData =>
-      res.json(userData))
-});
+
+//COMMENTED OUT WAS USED FOR INSOMNIA TESTING
+
+// router.get('/', (req, res) => {
+//   // find all categories
+//   // be sure to include its associated Products
+//   User.findAll({})
+//     .then(userData =>
+//       res.json(userData))
+// });
 
 // create new user
 router.post("/", async (req, res) => {
