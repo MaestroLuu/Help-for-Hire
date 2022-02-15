@@ -12,7 +12,7 @@ const postJob = async (event) => {
         description, 
         price, 
         zipcode,
-        contact_email
+        contact_email,
       })
       const response = await fetch("/api/hiringposts", {
         method: "POST",
@@ -21,7 +21,7 @@ const postJob = async (event) => {
           description, 
           price, 
           zipcode,
-          contact_email
+          contact_email,
         }),
         headers: {
           "Content-Type": "application/json; charset=UTF-8",

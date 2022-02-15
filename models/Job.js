@@ -50,6 +50,10 @@ Job.init(
         isEmail: true,
       },
     },
+    time: {
+      type: DataTypes.DATE,
+      notEmpty: false,
+    },
   },
   {
     sequelize,
