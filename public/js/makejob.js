@@ -28,6 +28,13 @@ const postJob = async (event) => {
         },
       });
   
+      console.log(price)
+      if (isNaN(price)) {
+        alert("price only accepts numbers, no symbols such as $")
+      }
+      if (isNaN(zipcode)) {
+        alert("zipcode only accepts numbers")
+      }
       if (!response.ok) {
         alert("Failed to post job.");
         return;
