@@ -2,6 +2,11 @@ const router = require("express").Router();
 const { Job } = require("../models");
 const { Op } = require("sequelize");
 const withAuth = require("../utils/withAuth");
+const dayjs = require('dayjs');
+var relativeTime = require('dayjs/plugin/relativeTime');
+dayjs.extend(relativeTime);
+const now = dayjs();
+
 
 router.get("/", (req, res) => {
   res.render("about", {
@@ -41,10 +46,11 @@ router.get("/jobseeking", withAuth, async (req, res) =>{
         user_id: {[Op.ne]: req.session.userId}
       }  
     });  
+    console.log(jobPosts);
     const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
-    console.log(jobs);
     res.render('job-seeking', {
       jobs,
+      // time: now.toNow().format('hh'),
       title: "Job Seeking",
       logged_in: req.session.logged_in,
     });  

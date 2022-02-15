@@ -10,6 +10,7 @@ const jobData = [
     zipcode: 92111,
     user_id: 1,
     contact_email: "job1@email.com",
+    time: '12:07'
   },
   {
     id: 2,
@@ -19,6 +20,7 @@ const jobData = [
     zipcode: 91914,
     user_id: 2,
     contact_email: "job2@email.com",
+    time: '11:17'
   },
   {
     id: 3,
@@ -28,6 +30,7 @@ const jobData = [
     zipcode: 91325,
     user_id: 3,
     contact_email: "job3@email.com",
+    time: '2:28'
   },
 ];
 

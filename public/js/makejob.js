@@ -27,8 +27,6 @@ const postJob = async (event) => {
           "Content-Type": "application/json; charset=UTF-8",
         },
       });
-  
-      console.log(price)
       if (isNaN(price)) {
         alert("price only accepts numbers, no symbols such as $")
       }
