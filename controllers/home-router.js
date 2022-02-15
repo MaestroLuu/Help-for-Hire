@@ -42,7 +42,6 @@ router.get("/jobseeking", withAuth, async (req, res) =>{
   try {
     const jobPosts = await Job.findAll({
       where: {
-      // change hardcode value to session id
         user_id: {[Op.ne]: req.session.userId}
       }  
     });  
@@ -50,7 +49,6 @@ router.get("/jobseeking", withAuth, async (req, res) =>{
     const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
     res.render('job-seeking', {
       jobs,
-      // time: now.toNow().format('hh'),
       title: "Job Seeking",
       logged_in: req.session.logged_in,
     });  
