@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
       zipcode,
       user_id: req.session.userId,
       contact_email,
-      time: now.format('HH:mm')
+      time: now.format()
     });
     console.log(newJob);
     // console.log(newJob.time)
