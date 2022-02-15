@@ -51,7 +51,7 @@ Job.init(
       },
     },
     time: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
       notEmpty: false,
     },
   },

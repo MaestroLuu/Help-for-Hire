@@ -1,5 +1,14 @@
 const { Job } = require('../models');
-
+const createDate = (time) => {
+  const date = new Date()
+  const [hour,minute] = time.split(":");
+  date.setHours(hour);
+  date.setMinutes(minute);
+  if (Date.now() - date.getTime() < 0) {
+    date.setDate(date.getDate()-1)
+  }
+  return date;
+}
 
 const jobData = [
   {
@@ -10,7 +19,7 @@ const jobData = [
     zipcode: 92111,
     user_id: 1,
     contact_email: "job1@email.com",
-    time: '12:07'
+    time: createDate('12:07')
   },
   {
     id: 2,
@@ -20,7 +29,7 @@ const jobData = [
     zipcode: 91914,
     user_id: 2,
     contact_email: "job2@email.com",
-    time: '11:17'
+    time: createDate('11:17')
   },
   {
     id: 3,
@@ -30,7 +39,7 @@ const jobData = [
     zipcode: 91325,
     user_id: 3,
     contact_email: "job3@email.com",
-    time: '2:28'
+    time: createDate('2:28')
   },
 ];
 

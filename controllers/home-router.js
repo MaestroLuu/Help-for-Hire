@@ -3,9 +3,9 @@ const { Job } = require("../models");
 const { Op } = require("sequelize");
 const withAuth = require("../utils/withAuth");
 const dayjs = require('dayjs');
-var relativeTime = require('dayjs/plugin/relativeTime');
+const relativeTime = require('dayjs/plugin/relativeTime');
 dayjs.extend(relativeTime);
-const now = dayjs();
+// const now = dayjs();
 
 
 router.get("/", (req, res) => {
@@ -38,14 +38,12 @@ router.get("/postjob", withAuth, async (req,res) => {
 }); 
 
 router.get("/jobseeking", withAuth, async (req, res) =>{
-  // find all jobs in db
   try {
     const jobPosts = await Job.findAll({
       where: {
         user_id: {[Op.ne]: req.session.userId}
       }  
     });  
-    console.log(jobPosts);
     const jobs = jobPosts.map((posts) => posts.get({ plain:true}));
     res.render('job-seeking', {
       jobs,
@@ -55,7 +53,6 @@ router.get("/jobseeking", withAuth, async (req, res) =>{
   } catch (error) {
     res.status(500).json(error);
   }
-  //serialize jobs so that appropriate values can be displayed
 });
 
 router.get("/jobseeking/:id", withAuth, async (req, res) =>{
@@ -65,10 +62,8 @@ router.get("/jobseeking/:id", withAuth, async (req, res) =>{
           res.status(404).json({ message: 'No job post exists with this id!'});
           return;
       }        
-      //serializes that specific job post 
       const jobDescription = jobPost.get({ plain: true});
       console.log(jobDescription);
-      // create a description.handlebars
       res.render('job-details', {
         jobDescription,
         title: "Job Description",
@@ -79,13 +74,11 @@ router.get("/jobseeking/:id", withAuth, async (req, res) =>{
   }
 });
 
-// missing cooking information
 router.get("/hiringposts", withAuth, async (req, res) =>{
   try {
     console.log(req.session.userId);
     const jobPosts = await Job.findAll({
       where: {
-      // change hardcode value to session id
         user_id: {[Op.eq]: req.session.userId}
       }  
     });  
@@ -111,10 +104,8 @@ router.get("/hiringposts/:id", withAuth, async (req, res) => {
         res.status(404).json({ message: 'No job post exists with this id!'});
         return;
     }        
-    //serializes that specific job post 
     const jobDescription = jobPost.get({ plain: true});
     console.log(jobDescription);
-    // create a description.handlebars
     res.render('hiring-detail', {
       jobDescription,
       title: "Hiring Post Page",
